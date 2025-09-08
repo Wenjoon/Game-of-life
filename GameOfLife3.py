@@ -1,5 +1,6 @@
 import os
 import random
+import time
 boardsize = int(input("Size of board? "))
 percentoftiles = boardsize * boardsize * int(input("Percent of tiles? ")) // 100
 board = []
@@ -26,7 +27,7 @@ def check(x,y):
         change.append([x,y])
 def run():
     os.system("clear")
-    printboard()
+    # printboard()
     for r in range(len(change)):
         if board[change[r][0]][change[r][1]] == ' ':
             board[change[r][0]] = board[change[r][0]][:change[r][1]] + '0' + board[change[r][0]][change[r][1]+1:]
@@ -37,4 +38,7 @@ def run():
         for j in range(boardsize):
             check(i,j)
 while 1:
+    start = time.perf_counter()
     run()
+    end = time.perf_counter()
+    print(f"{(end - start) * 1000} milliseconds")
